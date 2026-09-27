@@ -1,0 +1,125 @@
+{
+  "info": {
+    "_postman_id": "b0e68103-da95-4a02-ba68-b12c7824d146",
+    "name": "CE385 Workshop 4 - Todo API (ex4)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{healthUrl}}"
+      }
+    },
+    {
+      "name": "02 GET All Todos - 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}"
+      }
+    },
+    {
+      "name": "03 GET Todo By Id (found) - 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/1"
+      }
+    },
+    {
+      "name": "04 GET Todo By Id (not found) - 404",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/999"
+      }
+    },
+    {
+      "name": "05 POST Create Todo (valid) - 201",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"งานทดสอบจาก Postman\",\n  \"priority\": \"low\"\n}"
+        },
+        "url": "{{baseUrl}}"
+      }
+    },
+    {
+      "name": "06 POST Create Todo (missing title) - 400",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"priority\": \"low\"\n}"
+        },
+        "url": "{{baseUrl}}"
+      }
+    },
+    {
+      "name": "07 POST Create Todo (duplicate title) - 409",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"งานทดสอบจาก Postman\"\n}"
+        },
+        "url": "{{baseUrl}}"
+      }
+    },
+    {
+      "name": "08 PUT Update Todo (found) - 200",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"อ่านหนังสือ CE385 (แก้ไขผ่าน Postman)\",\n  \"done\": true\n}"
+        },
+        "url": "{{baseUrl}}/1"
+      }
+    },
+    {
+      "name": "09 PUT Update Todo (not found) - 404",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"ไม่มีจริง\"\n}"
+        },
+        "url": "{{baseUrl}}/999"
+      }
+    },
+    {
+      "name": "10 DELETE Todo (found, first call) - 204",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/4"
+      }
+    },
+    {
+      "name": "11 DELETE Todo (same id again) - 404",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/4"
+      }
+    },
+    {
+      "name": "12 GET Unknown Route - 404",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:3000/api/v1/unknown-route"
+      }
+    }
+  ]
+}
